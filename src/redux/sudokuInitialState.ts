@@ -7,6 +7,12 @@ const calculateIndex = function (row: number, column: number): number {
     return rowIdx * 9 + colIdx;
   }; 
 
+const calculateBlockNr = (row: number, column: number): number => {
+    const divRow = Math.ceil(~~row / 3);
+    const divCol = Math.ceil(~~column / 3);
+  return parseInt(`${divRow}${divCol}`);
+}
+
 
 const sudokuInitialState = (): SudokuCellArray => {
     const initState: SudokuCellArray = [];
@@ -14,9 +20,10 @@ const sudokuInitialState = (): SudokuCellArray => {
     for(let row = 1; row < 10; row++ ) {
         for(let column = 1; column < 10; column++){
             initState[calculateIndex(row, column)] = {
-                blockNr:1, 
+                blockNr:calculateBlockNr(row, column), 
                 rowNr: row,
-                columnNr: column, 
+                columnNr: column,
+                helpValue:[123456789]
             }
         }
     }

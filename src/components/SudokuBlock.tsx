@@ -1,5 +1,6 @@
 import React from "react";
 import { SudokuCellArray } from "./model";
+import SudokuCell from "./SudokuCell";
 
 interface SudokuBlockProps {sudokuBlock: SudokuCellArray};
 
@@ -8,22 +9,19 @@ const SudokuBlock:React.FC<SudokuBlockProps> = ({sudokuBlock}) => {
     <table className="SudokuBlock">
         <tbody>
         <tr>
-            <td className="SudokuCell">
-            <input className="InputValue"/>
-            <input className="InputHelp" value="123456789"/>
-            </td>
-            <td className="SudokuCell"></td>
-            <td className="SudokuCell"></td>
+            <SudokuCell cell={sudokuBlock[0]} />
+            <SudokuCell cell={sudokuBlock[1]} />
+            <SudokuCell cell={sudokuBlock[2]} />
         </tr>
         <tr>
-            <td className="SudokuCell"></td>
-            <td className="SudokuCell"></td>
-            <td className="SudokuCell"></td>
+            <SudokuCell cell={sudokuBlock[3]} />
+            <SudokuCell cell={sudokuBlock[4]} />
+            <SudokuCell cell={sudokuBlock[5]} />
         </tr>
         <tr>
-            <td className="SudokuCell"></td>
-            <td className="SudokuCell"></td>
-            <td className="SudokuCell"></td>
+            <SudokuCell cell={sudokuBlock[6]} />
+            <SudokuCell cell={sudokuBlock[7]} />
+            <SudokuCell cell={sudokuBlock[8]} />
         </tr>
         </tbody>
     </table>)

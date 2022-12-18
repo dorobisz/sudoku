@@ -1,5 +1,5 @@
 import React from "react";
-import { SudokuCellArray } from "./model";
+import { SudokuCellArray} from "./model";
 import SudokuBlock from "./SudokuBlock";
 import sudokuInitialState from "../redux/sudokuInitialState";
 import range from "lodash/range";
@@ -10,8 +10,10 @@ interface SudokuProps {
 }
 
 const Sudoku: React.FC<SudokuProps> = ({sudoku}) => {
-    console.log(sudoku);
-    const sudokuBlocks = range(1, 10).map(blockNr => getBlock(blockNr, sudoku))
+    const blocksNr = [...new Set(sudoku.map(cell => cell.blockNr))] ;
+    blocksNr.sort();
+    const sudokuBlocks = blocksNr.map(blockNr => getBlock(blockNr, sudoku));
+    console.log(sudokuBlocks)
     return (
         <div className="Sudoku">
             {sudokuBlocks.map((sudokuBlock, i) => <SudokuBlock key={`sudokuBlock_${i}`} sudokuBlock={sudokuBlock}/>)}

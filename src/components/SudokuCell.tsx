@@ -1,13 +1,16 @@
+import { ceil } from "lodash";
 import React from "react";
-import { SudokuCell } from "./model";
+import { Cell } from "./model";
 
-const SudokuBlock:React.FC<SudokuCell> = ({}) => {
+interface SudokuCellProps {cell: Cell};
+
+const SudokuCell:React.FC<SudokuCellProps> = ({cell}) => {
     return (    
-        <div className="SudokuCell">
-            <input className="InputValue"/>
-            <input className="InputHelp" value="123456789"/>
-        </div>
+        <td className="SudokuCell">
+            <input className="InputValue" value={cell.value} onChange={()=>{}}/>
+            <input className="InputHelp" value={cell.helpValue?.join('')}  onChange={()=>{}}/>
+        </td>
     );
 }
 
-export default SudokuBlock;
+export default SudokuCell;

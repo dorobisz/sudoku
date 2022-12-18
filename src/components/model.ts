@@ -1,10 +1,10 @@
 
-export interface SudokuCellArray extends Array<SudokuCell>{}
+export interface SudokuCellArray extends Array<Cell>{}
 
-export interface SudokuCell {
-    blockNr: Number,
-    rowNr: Number,
-    columnNr: Number,
-    value?: Number,
-    helpValue?: Array<Number>
+export interface Cell {
+    blockNr: number,
+    rowNr: number,
+    columnNr: number,
+    value?: number,
+    helpValue?: Array<number>
 };
