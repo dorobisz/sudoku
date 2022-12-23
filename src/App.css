@@ -1,18 +1,85 @@
+* {
+	box-sizing: border-box;
+  }
 
-	.Sudoku {
-		width: 500px;
-		height: 500px;
-	}
+  html, body {
+	height: 100%;
+  }
+
+.content {
+	overflow: auto;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.contentHeader {
+	width: 100%;
+	background-color: darkseagreen;
+	border-radius: 20px;
+	margin:4px;
+}
+
+.contentHeader h1 {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: 30%;
+
+}
+
+.leftPanel {
+	width: 20%;
+	flex:1;
+	background-color: blueviolet;
+	margin-left: 4px;
+}
+
+.main {
+	padding: 0px;
+	width: 60%;
+	flex:3;
+}
+
+.rightPanel {
+	background-color: lightblue;
+	padding: 10px 15px;
+	width: 20%;
+	flex:3;
+	margin-right: 4px;
+	
+
+}
+
+.leftPanel, .main, .rightPanel {
+	margin-top: 3px;
+	border-radius: 20px;
+    padding: 10px;
+}
+
+
+.Sudoku {
+	background-color: #666;
+    margin: 0px;
+    padding: 0px;
+    border: 2px solid #666;
+    width: 604px;
+    height: 604px;
+    border-collapse: collapse;
+	margin: auto;
+
+}
 
 .SudokuBlock {
-	float: left;
-	border: 2px solid #666;
-	border-collapse: collapse;
-	font-size: 18px;
-	line-height: 15px;
-	padding: 0px;
-	margin: 0px;
-    width: 33%;
+    float: left;
+	background-color: white;
+    border: 2px solid #666;
+    border-collapse: collapse;
+    font-size: 18px;
+    line-height: 15px;
+    padding: 0px;
+    margin: 0px;
+    width: 200px;
+    height: 200px;
+    
 }
 
 .SudokuCell {
@@ -27,12 +94,12 @@
 
 .SudokuCell .InputValue {
 	border: 0px;
-	width: 25px;
-	height: 25px;
+	width: 33px;
+	height: 33px;
 	text-align: center;
-	margin: 0px;
+	margin: 5px;
 	padding: 0px;
-	font-size: 18px;
+	font-size: 20px;
 	font-weight: 600;
   -webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;

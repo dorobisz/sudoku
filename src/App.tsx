@@ -7,7 +7,14 @@ import sudokuInitialState from './redux/sudokuInitialState';
 function App() {
   const sudoku = sudokuInitialState();
   return (
-    <Sudoku sudoku={sudoku} />
+    <div className="content">
+      <div className="contentHeader"><h1>SUDOKU</h1></div>
+      <div className="leftPanel"></div>
+      <div className="main">
+        <Sudoku sudoku={sudoku} />
+      </div>
+      <div className="rightPanel"></div>
+    </div>
   );
 }
 
