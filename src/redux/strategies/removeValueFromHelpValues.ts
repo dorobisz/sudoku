@@ -22,9 +22,8 @@ export const removeValueFromHelpStrategy = (sudoku: SudokuCellArray, cell: Cell)
     const changedCells = modifiedBlockCells
         .concat(modifiedColumnCells)
         .concat(modifiedRowCells)
+        .filter(changedCell => !(changedCell.columnNr === cell.columnNr && changedCell.rowNr === cell.rowNr))
         .map(cell => ({...cell, historyIds: [...cell.historyIds, id]}));
-
-    console.log(changedCells);
 
     const newSudoku = updateSudoku(sudoku, changedCells);
 

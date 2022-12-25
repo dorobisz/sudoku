@@ -22,7 +22,7 @@ export const sudokuSlice = createSlice({
   initialState,
   reducers: {
     setValue: (state, action: PayloadAction<Cell>) => {
-        const newCell = {...action.payload};
+        const newCell: Cell = {...action.payload, helpValue:[]};
         state.sudoku = updateSudoku(state.sudoku, [newCell]);
     },
     clearHelpValue: (state, action:PayloadAction<Cell>) => {
