@@ -6,17 +6,19 @@ import range from "lodash/range";
 import { getBlock } from "../utils/sudokuBlockUtil";
 
 interface SudokuProps {
-    sudoku: SudokuCellArray;
+    sudoku: SudokuCellArray,
+    dispatch: Function
 }
 
-const Sudoku: React.FC<SudokuProps> = ({sudoku}) => {
+const Sudoku: React.FC<SudokuProps> = ({sudoku, dispatch}) => {
+    console.log(sudoku);
     const blocksNr = [...new Set(sudoku.map(cell => cell.blockNr))] ;
     blocksNr.sort();
     const sudokuBlocks = blocksNr.map(blockNr => getBlock(blockNr, sudoku));
-    console.log(sudokuBlocks)
+    
     return (
         <div className="Sudoku">
-            {sudokuBlocks.map((sudokuBlock, i) => <SudokuBlock key={`sudokuBlock_${i}`} sudokuBlock={sudokuBlock}/>)}
+            {sudokuBlocks.map((sudokuBlock, i) => <SudokuBlock dispatch={dispatch} key={`sudokuBlock_${i}`} sudokuBlock={sudokuBlock}/>)}
         </div>
     );
 }

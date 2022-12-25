@@ -7,4 +7,4 @@ export const getRow =  (rowNr: Number, sudoku: SudokuCellArray): SudokuCellArray
     sudoku.filter(cell => cell.rowNr === rowNr);
 
 export const getColumn =  (columnNr: Number, sudoku: SudokuCellArray): SudokuCellArray => 
-    sudoku.filter(cell => cell.rowNr === columnNr);
+    sudoku.filter(cell => cell.columnNr === columnNr);

@@ -84,8 +84,8 @@
 
 .SudokuCell {
 	border: 1px solid #666;
-	height: 46px;
-	width: 45px;
+	height: 66px;
+	width: 66px;
 	padding: 0px;
 	margin: 0px;
 	text-align: center;

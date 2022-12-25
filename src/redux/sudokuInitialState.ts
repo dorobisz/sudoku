@@ -23,7 +23,8 @@ const sudokuInitialState = (): SudokuCellArray => {
                 blockNr:calculateBlockNr(row, column), 
                 rowNr: row,
                 columnNr: column,
-                helpValue:[123456789]
+                helpValue:[1,2,3,4,5,6,7,8,9],
+                historyIds: []
             }
         }
     }
