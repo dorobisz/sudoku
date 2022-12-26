@@ -18,6 +18,7 @@ export const recalculateHelpValue = (cell: Cell) => (dispatch: any) => {
 const runStrategies = (colNr: number, rowNr: number) => (dispatch: any) => {
     const sudoku = store.getState().app.sudoku;
     const cell = getCell(colNr, rowNr, sudoku);
+    console.log(cell);
     if(cell) {
      dispatch(removeValueFromHelp(cell, sudoku));
      //TODO add another strategies

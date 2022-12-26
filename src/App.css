@@ -114,6 +114,7 @@
 }
 
 .SudokuCell .InputHelp {
+	display: block;
 	border: 0px;
 	border-bottom: 0px solid #DADADA;
 	width: 100%;

@@ -11,7 +11,6 @@ interface SudokuProps {
 }
 
 const Sudoku: React.FC<SudokuProps> = ({sudoku, dispatch}) => {
-    console.log(sudoku);
     const blocksNr = [...new Set(sudoku.map(cell => cell.blockNr))] ;
     blocksNr.sort();
     const sudokuBlocks = blocksNr.map(blockNr => getBlock(blockNr, sudoku));
