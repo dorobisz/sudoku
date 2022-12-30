@@ -29,7 +29,7 @@ export const removeValueFromHelpStrategy = (sudoku: SudokuCellArray, cell: Cell)
 
     return {
         id,
-        strategyNames: `remove value ${cell.value} from row=${cell.rowNr}, column=${cell.columnNr} and block`,
+        description: `remove value ${cell.value} from row=${cell.rowNr}, column=${cell.columnNr} and block`,
         oldSudoku: sudoku,
         cell,
         changedCells,

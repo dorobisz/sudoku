@@ -1,9 +1,7 @@
 import React from "react";
-import { SudokuCellArray} from "./model";
+import { SudokuCellArray} from "../model";
 import SudokuBlock from "./SudokuBlock";
-import sudokuInitialState from "../redux/sudokuInitialState";
-import range from "lodash/range";
-import { getBlock } from "../utils/sudokuBlockUtil";
+import { getBlock } from "../../utils/sudokuBlockUtil";
 
 interface SudokuProps {
     sudoku: SudokuCellArray,

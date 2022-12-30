@@ -1,3 +1,4 @@
+import { isJSDocThisTag } from "typescript";
 import { Cell, SudokuCellArray } from "../components/model";
 
 export const getSudokuArrayIndex = (cell: Cell) => cell.columnNr + (9 * (cell.rowNr - 1)) - 1 as number;
@@ -9,6 +10,11 @@ export const updateSudoku = (sudoku: SudokuCellArray, cells: Array<Cell>): Sudok
     });
     return newSudoku;
 };
+
+export const addHistoryId = (cell: Cell, historyId: string): Cell => {
+    return {...cell,historyIds: [...cell.historyIds, historyId]};
+}
+
 
 
 export const uid = (): string =>

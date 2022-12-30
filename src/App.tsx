@@ -1,13 +1,16 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Sudoku from './components/Sudoku';
+import Sudoku from './components/sudoku/Sudoku';
 import sudokuInitialState from './redux/sudokuInitialState';
+import { selectHistory } from './redux/reducers/historyReducer';
 import { selectSudoku } from './redux/reducers/sudokuReducer';
 import { useAppDispatch, useAppSelector } from './redux/hooks';
+import HistoryPanel from './components/history/HistoryPanel';
 
 function App() {
   const sudoku = useAppSelector(selectSudoku);
+  const histories = useAppSelector(selectHistory)
   const dispatch = useAppDispatch()
   return (
     <div className="content">
@@ -16,7 +19,9 @@ function App() {
       <div className="main">
         <Sudoku sudoku={sudoku} dispatch={dispatch} />
       </div>
-      <div className="rightPanel"></div>
+      <div className="rightPanel">
+        <HistoryPanel dispatch={dispatch} histories={histories} />
+      </div>
     </div>
   );
 }

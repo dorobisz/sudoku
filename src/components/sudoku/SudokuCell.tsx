@@ -1,7 +1,7 @@
 import { isEqual } from "lodash";
 import React, { useState, useEffect, useRef } from "react";
-import { populateValue, recalculateHelpValue } from "../redux/reducers/actions";
-import { Cell } from "./model";
+import { populateValue, recalculateHelpValue } from "../../redux/reducers/actions";
+import { Cell } from "../model";
 
 interface SudokuCellProps {
     cell: Cell, 

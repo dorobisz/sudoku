@@ -1,5 +1,5 @@
 import React from "react";
-import { SudokuCellArray } from "./model";
+import { SudokuCellArray } from "../model";
 import SudokuCell from "./SudokuCell";
 
 interface SudokuBlockProps {sudokuBlock: SudokuCellArray, dispatch: Function};
