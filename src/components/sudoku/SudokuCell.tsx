@@ -1,48 +1,23 @@
-import { isEqual } from "lodash";
-import React, { useState, useEffect, useRef } from "react";
-import { populateValue, recalculateHelpValue } from "../../redux/reducers/actions";
+import React from "react";
+import { populateValue } from "../../redux/reducers/actions";
 import { Cell } from "../model";
+import HelpValues from "./HelpValues";
+import InputValue from "./InputValue";
 
 interface SudokuCellProps {
-    cell: Cell, 
+    cell: Cell,
+    selectedHistory?: History 
     dispatch: Function};
 
 const SudokuCell:React.FC<SudokuCellProps> = ({cell,dispatch}) => {
     const {helpValue} = cell;
 
-    const [value, setValue] = useState<number>(cell.value || 0);
-
-    const handleValueChange = (value: string) => {
-        const parsed = parseInt(value);
-        if (isNaN(parsed) || !helpValue.includes(parsed)) {
-            setValue(0);
-        } else {
-            const newValue: number = Number(value);
-            setValue(newValue);
-            const newCell: Cell  = {...cell, value: newValue};
-            dispatch(populateValue(newCell));
-
-        }
-    }
-
-    const handleValueKeyDown = (key: string): boolean => {
-        return false;
-
-    }
-
-    const hasValue = (): boolean => value !==0;
-
+    const handleValueChange = (value: number) => dispatch(populateValue({...cell, value}));
 
     return (    
         <td className="SudokuCell">
-            <input 
-            className="InputValue" 
-            onKeyDown={e => handleValueKeyDown(e.key)} 
-            value={hasValue() ? value : ""} 
-            disabled={hasValue()} 
-            onChange={e => handleValueChange(e.target.value)}/>
-            
-            <label className="InputHelp">{helpValue?.join('')}</label>
+            <InputValue helpValue={helpValue} value={cell.value} onChange={ (value: number) => handleValueChange(value)}/>
+            <HelpValues helpValues={helpValue} />
         </td>
     );
 }
