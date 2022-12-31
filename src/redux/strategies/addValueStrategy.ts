@@ -7,7 +7,7 @@ export const addValueStrategy = (sudoku: SudokuCellArray, cell: Cell, newSudoku:
 
     return {
         id,
-        description: `add value ${cell.value} in cell [${cell.rowNr} ${cell.columnNr}] `,
+        description: `add value ${cell.value} in cell [${cell.coordinates.rowNr} ${cell.coordinates.columnNr}] `,
         oldSudoku: sudoku,
         cell,
         changedCells,

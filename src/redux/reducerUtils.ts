@@ -1,7 +1,7 @@
 import { isJSDocThisTag } from "typescript";
 import { Cell, SudokuCellArray } from "../components/model";
 
-export const getSudokuArrayIndex = (cell: Cell) => cell.columnNr + (9 * (cell.rowNr - 1)) - 1 as number;
+export const getSudokuArrayIndex = (cell: Cell) => cell.coordinates.columnNr + (9 * (cell.coordinates.rowNr - 1)) - 1 as number;
 
 export const updateSudoku = (sudoku: SudokuCellArray, cells: Array<Cell>): SudokuCellArray => {
     const newSudoku = [...sudoku];

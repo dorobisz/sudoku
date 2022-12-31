@@ -1,10 +1,14 @@
 
 export interface SudokuCellArray extends Array<Cell>{}
 
-export interface Cell {
+export interface Coordinates {
     blockNr: number,
     rowNr: number,
     columnNr: number,
+}
+
+export interface Cell {
+    coordinates: Coordinates,
     value?: number,
     helpValue: Array<number>
     historyIds: Array<string>

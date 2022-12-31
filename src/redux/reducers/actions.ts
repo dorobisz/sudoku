@@ -15,7 +15,7 @@ export const populateValue = (cell: Cell) => (dispatch: any) => {
 }
 
 export const recalculateHelpValue = (cell: Cell) => (dispatch: any) => {
-  dispatch(runStrategies(cell.columnNr, cell.rowNr));
+  dispatch(runStrategies(cell.coordinates.columnNr, cell.coordinates.rowNr));
   
 }
 
