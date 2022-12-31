@@ -1,5 +1,5 @@
 import { Cell, SudokuCellArray } from "../../components/model";
-import { getCell } from "../../utils/sudokuBlockUtil";
+import { getCell } from "../../utils/sudokuUtil";
 import store from "../sotre";
 import { addValueStrategy } from "../../strategies/addValueStrategy";
 import { removeValueStrategy } from "../../strategies/removeValueStrategy";

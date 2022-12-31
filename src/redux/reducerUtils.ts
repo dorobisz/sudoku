@@ -1,5 +1,5 @@
 import { Cell, StrategyCell, SudokuCellArray } from "../components/model";
-import { getCell } from "../utils/sudokuBlockUtil";
+import { getCell } from "../utils/sudokuUtil";
 
 const clearValues = (allValues: Array<number>, valuesToDelete: Array<number>): Array<number> => {
     return allValues.filter(value => !valuesToDelete.includes(value));

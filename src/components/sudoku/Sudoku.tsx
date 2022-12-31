@@ -1,7 +1,7 @@
 import React from "react";
 import { SudokuCellArray} from "../model";
 import SudokuBlock from "./SudokuBlock";
-import { getBlock } from "../../utils/sudokuBlockUtil";
+import { getBlock } from "../../utils/sudokuUtil";
 
 interface SudokuProps {
     sudoku: SudokuCellArray,

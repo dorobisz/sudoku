@@ -1,5 +1,6 @@
 import React from "react";
 import { HistoryArray } from "../model";
+import HistoryElement from "./HistoryElement";
 
 interface SudokuCellProps {
     histories: HistoryArray
@@ -10,7 +11,7 @@ const HistoryPanel:React.FC<SudokuCellProps> = ({histories,dispatch}) => {
     return (    
         <div>
             <h2>History panel</h2>
-            {histories.map(history => <h3 key={history.id}>{history.strategy.description}</h3>)}
+            {histories.map(history => <HistoryElement key={`historyElement${history.id}`} history={history}/>)}
         </div>
     );
 }

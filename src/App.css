@@ -144,3 +144,21 @@
 {
 	box-shadow: 0 0 6px #FF1C1C inset;
 }
+
+.History {
+	cursor: pointer;
+    border-radius: 10px;
+    padding: 3px 10px;
+	margin-bottom: 10px;
+}
+
+.History_major {
+	font-weight: 700;
+	font-size: 16px;
+	background-color: beige;
+}
+
+.History_minor {
+	background-color: chocolate;
+	margin-left: 20%;
+}

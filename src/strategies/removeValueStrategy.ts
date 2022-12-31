@@ -1,5 +1,5 @@
 import { Cell, SudokuCellArray, StrategyCell, Strategy } from "../components/model"
-import { getBlock, getColumn, getRow } from "../utils/sudokuBlockUtil"
+import { getBlock, getColumn, getRow } from "../utils/sudokuUtil"
 
 const removeHelpValue = (cells: SudokuCellArray, value?: number): Array<StrategyCell> => {
     return cells.map(cell => (
@@ -23,7 +23,8 @@ export const removeValueStrategy = (sudoku: SudokuCellArray, cell: Cell): Strate
         .filter(changedCell => !(changedCell.coordinates.columnNr === cell.coordinates.columnNr && changedCell.coordinates.rowNr === cell.coordinates.rowNr))
   
     return {
-        description: `remove value ${cell.value} from row=${cell.coordinates.rowNr}, column=${cell.coordinates.columnNr} and block`,
+        strategyType: "minor",
+        description: `remove value ${cell.value}`,
         clearedCells: changedCells
     }
 }

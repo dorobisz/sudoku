@@ -22,7 +22,10 @@ export interface History {
     newSudoku: SudokuCellArray
 }
 
+export type StrategyType =  "major" | "minor";
+
 export interface Strategy {
+    strategyType: StrategyType,
     description: string,
     clearedCells: Array<StrategyCell>
 }
