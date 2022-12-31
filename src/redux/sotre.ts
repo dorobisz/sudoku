@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import SudokuReducer from "./reducers/sudokuReducer";
-import HistoryReducer from "./reducers/historyReducer"
+import SudokuReducer from "./reducers/app/sudokuReducer";
+import HistoryReducer from "./reducers/hisotry/historyReducer"
 
 const store = configureStore({
     reducer: {

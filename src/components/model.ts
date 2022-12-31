@@ -18,9 +18,16 @@ export interface HistoryArray extends Array<History>{}
 
 export interface History {
     id: string,
-    description: string,
-    oldSudoku: SudokuCellArray,
-    cell: Cell,
-    changedCells: SudokuCellArray,
+    strategy: Strategy,
     newSudoku: SudokuCellArray
+}
+
+export interface Strategy {
+    description: string,
+    clearedCells: Array<StrategyCell>
+}
+
+export interface StrategyCell {
+    coordinates: Coordinates,
+    removedHelpValues: Array<number>
 }

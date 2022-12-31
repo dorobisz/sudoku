@@ -1,35 +1,31 @@
 import { Cell, SudokuCellArray } from "../../components/model";
 import { getCell } from "../../utils/sudokuBlockUtil";
 import store from "../sotre";
-import { addValueStrategy } from "../strategies/addValueStrategy";
-import { removeValueFromHelpStrategy } from "../strategies/removeValueFromHelpValues";
-import { addHistory } from "./historyReducer";
-import { setHelpValue, setValue } from "./sudokuReducer";
+import { addValueStrategy } from "../../strategies/addValueStrategy";
+import { removeValueStrategy } from "../../strategies/removeValueStrategy";
+import { addHistory } from "./hisotry/historyReducer";
+import { update, setValue } from "./app/sudokuReducer";
+import { uid, updateCells } from "../reducerUtils";
+import { createHistory } from "./hisotry/historyFactory";
 
 export const populateValue = (cell: Cell) => (dispatch: any) => {
-    const sudoku = store.getState().app.sudoku;
     dispatch(setValue(cell));
-    const newSudoku = store.getState().app.sudoku;
-    dispatch(addHistory(addValueStrategy(sudoku, cell, newSudoku)));
-    dispatch(recalculateHelpValue(cell));
+    dispatch((addCellHistory(cell, addValueStrategy)));
+    dispatch(history(cell));
 }
 
-export const recalculateHelpValue = (cell: Cell) => (dispatch: any) => {
-  dispatch(runStrategies(cell.coordinates.columnNr, cell.coordinates.rowNr));
-  
+const history = (cell: Cell) => (dispatch: any) => {
+  const sudoku = store.getState().app.sudoku;
+  dispatch((addCellHistory(cell, removeValueStrategy)));
 }
 
-const runStrategies = (colNr: number, rowNr: number) => (dispatch: any) => {
-     dispatch(removeValueFromHelp(colNr, rowNr));
-     //TODO add another strategies
-}
+const addCellHistory = (cell: Cell, strategyProvider: Function) => (dispatch: any) => {
+  const sudoku = store.getState().app.sudoku;
+  const historyId = uid();
+  const strategy =  strategyProvider(sudoku, cell);
 
-const removeValueFromHelp = (colNr: number, rowNr: number) => (dispatch: any) => {
-    const sudoku = store.getState().app.sudoku;
-    const cell = getCell(colNr, rowNr, sudoku);
-    if(cell && cell.value) {
-        const history = removeValueFromHelpStrategy(sudoku, cell);
-        dispatch(addHistory(history));
-        history.changedCells.forEach(cell => dispatch(setHelpValue(cell)));
-    }
-  }
+  const updatedCells = updateCells(sudoku, strategy.clearedCells, historyId);
+  updatedCells.forEach(cell => dispatch(update(cell)));
+  dispatch(addHistory(createHistory(strategy, store.getState().app.sudoku, historyId)))
+     
+}

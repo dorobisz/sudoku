@@ -1,9 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { Cell, SudokuCellArray } from '../../components/model'
-import type { RootState } from '../sotre'
-import store from '../sotre'
-import sudokuInitialState from '../sudokuInitialState'
-import { getSudokuArrayIndex, updateSudoku } from '../reducerUtils'
+import { Cell, SudokuCellArray } from '../../../components/model'
+import type { RootState } from '../../sotre'
+import sudokuInitialState from './sudokuInitialState'
 
 // Define a type for the slice state
 export interface SudokuState {
@@ -22,24 +20,30 @@ export const sudokuSlice = createSlice({
   initialState,
   reducers: {
     setValue: (state, action: PayloadAction<Cell>) => {
-        const newCell: Cell = {...action.payload, helpValue:[]};
-        state.sudoku = updateSudoku(state.sudoku, [newCell]);
-    },
-    clearHelpValue: (state, action:PayloadAction<Cell>) => {
-        const newCell: Cell = {...action.payload, helpValue: []};
+        const newCell: Cell = {...action.payload};
         state.sudoku = updateSudoku(state.sudoku, [newCell]);
     },
 
-    setHelpValue: (state, action:PayloadAction<Cell>) => {
+    update: (state, action:PayloadAction<Cell>) => {
       const newCell: Cell = {...action.payload};
       state.sudoku = updateSudoku(state.sudoku, [newCell]);
     },
   },
 })
 
-export const { setValue, clearHelpValue, setHelpValue } = sudokuSlice.actions
+export const { setValue, update } = sudokuSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectSudoku = (state: RootState) => state.app.sudoku as SudokuCellArray
 
-export default sudokuSlice.reducer
+export default sudokuSlice.reducer;
+
+const getSudokuArrayIndex = (cell: Cell) => cell.coordinates.columnNr + (9 * (cell.coordinates.rowNr - 1)) - 1 as number;
+
+const updateSudoku = (sudoku: SudokuCellArray, cells: Array<Cell>): SudokuCellArray => {
+  const newSudoku = [...sudoku];
+  cells.forEach(cell => {
+      newSudoku[getSudokuArrayIndex(cell)] = cell
+  });
+  return newSudoku;
+};

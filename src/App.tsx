@@ -2,9 +2,9 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Sudoku from './components/sudoku/Sudoku';
-import sudokuInitialState from './redux/sudokuInitialState';
-import { selectHistory } from './redux/reducers/historyReducer';
-import { selectSudoku } from './redux/reducers/sudokuReducer';
+import sudokuInitialState from './redux/reducers/app/sudokuInitialState';
+import { selectHistory } from './redux/reducers/hisotry/historyReducer';
+import { selectSudoku } from './redux/reducers/app/sudokuReducer';
 import { useAppDispatch, useAppSelector } from './redux/hooks';
 import HistoryPanel from './components/history/HistoryPanel';
 

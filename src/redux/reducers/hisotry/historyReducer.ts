@@ -1,10 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { Cell, History, HistoryArray, SudokuCellArray } from '../../components/model'
-import type { RootState } from '../sotre'
-import store from '../sotre'
-import sudokuInitialState from '../sudokuInitialState'
-import { getSudokuArrayIndex, updateSudoku } from '../reducerUtils'
-import { removeValueFromHelpStrategy } from '../strategies/removeValueFromHelpValues'
+import { Cell, History, HistoryArray, SudokuCellArray } from '../../../components/model'
+import type { RootState } from '../../sotre'
+
 
 // Define a type for the slice state
 export interface HistoryState {

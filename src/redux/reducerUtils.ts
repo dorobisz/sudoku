@@ -1,24 +1,24 @@
-import { isJSDocThisTag } from "typescript";
-import { Cell, SudokuCellArray } from "../components/model";
+import { Cell, StrategyCell, SudokuCellArray } from "../components/model";
+import { getCell } from "../utils/sudokuBlockUtil";
 
-export const getSudokuArrayIndex = (cell: Cell) => cell.coordinates.columnNr + (9 * (cell.coordinates.rowNr - 1)) - 1 as number;
-
-export const updateSudoku = (sudoku: SudokuCellArray, cells: Array<Cell>): SudokuCellArray => {
-    const newSudoku = [...sudoku];
-    cells.forEach(cell => {
-        newSudoku[getSudokuArrayIndex(cell)] = cell
-    });
-    return newSudoku;
-};
-
-export const addHistoryId = (cell: Cell, historyId: string): Cell => {
-    return {...cell,historyIds: [...cell.historyIds, historyId]};
+const clearValues = (allValues: Array<number>, valuesToDelete: Array<number>): Array<number> => {
+    return allValues.filter(value => !valuesToDelete.includes(value));
 }
 
+export const updateCells = (sudoku: SudokuCellArray, strategyCells: Array<StrategyCell>, historyId: string): Array<Cell> => {
+    return strategyCells.map(strategyCell => {
+        const cell =  getCell(strategyCell.coordinates, sudoku);
+        return {
+            ...cell, 
+            helpValue: clearValues(cell.helpValue, strategyCell.removedHelpValues),
+            historyIds: [...cell.historyIds, historyId]
+        };
 
+    });
+}
 
 export const uid = (): string =>
-String(
-  Date.now().toString(32) +
-    Math.random().toString(16)
-).replace(/\./g, '')
+  String(
+    Date.now().toString(32) +
+      Math.random().toString(16)
+).replace(/\./g, '');

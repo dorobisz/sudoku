@@ -1,4 +1,4 @@
-import { SudokuCellArray } from "../components/model";
+import { SudokuCellArray } from "../../../components/model";
 
 
 const calculateIndex = function (row: number, column: number): number {

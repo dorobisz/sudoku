@@ -1,7 +1,5 @@
 import { range } from "lodash";
-import React, { useState, useEffect, useRef } from "react";
-import { populateValue, recalculateHelpValue } from "../../redux/reducers/actions";
-import { Cell } from "../model";
+import React from "react";
 
 interface HelpValuesProps {
     helpValues: Array<number>, 

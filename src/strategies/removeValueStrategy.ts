@@ -1,19 +1,17 @@
-import { Cell, SudokuCellArray, History } from "../../components/model"
-import { getBlock, getColumn, getRow } from "../../utils/sudokuBlockUtil"
-import { uid, updateSudoku } from "../reducerUtils"
+import { Cell, SudokuCellArray, StrategyCell, Strategy } from "../components/model"
+import { getBlock, getColumn, getRow } from "../utils/sudokuBlockUtil"
 
-const removeHelpValue = (cells: SudokuCellArray, value?: number): SudokuCellArray => {
+const removeHelpValue = (cells: SudokuCellArray, value?: number): Array<StrategyCell> => {
     return cells.map(cell => (
             {
-                ...cell, 
-                helpValue: cell.helpValue.filter(val => val !== value)
+                coordinates: cell.coordinates, 
+                removedHelpValues: cell.helpValue.filter(val => val === value)
             }
         )
     )
 }
 
-export const removeValueFromHelpStrategy = (sudoku: SudokuCellArray, cell: Cell): History => {
-    const id = uid();
+export const removeValueStrategy = (sudoku: SudokuCellArray, cell: Cell): Strategy => {
 
     const modifiedBlockCells = removeHelpValue(getBlock(cell.coordinates.blockNr, sudoku), cell.value);
     const modifiedColumnCells = removeHelpValue(getColumn(cell.coordinates.columnNr, sudoku), cell.value);
@@ -23,16 +21,9 @@ export const removeValueFromHelpStrategy = (sudoku: SudokuCellArray, cell: Cell)
         .concat(modifiedColumnCells)
         .concat(modifiedRowCells)
         .filter(changedCell => !(changedCell.coordinates.columnNr === cell.coordinates.columnNr && changedCell.coordinates.rowNr === cell.coordinates.rowNr))
-        .map(cell => ({...cell, historyIds: [...cell.historyIds, id]}));
-
-    const newSudoku = updateSudoku(sudoku, changedCells);
-
+  
     return {
-        id,
         description: `remove value ${cell.value} from row=${cell.coordinates.rowNr}, column=${cell.coordinates.columnNr} and block`,
-        oldSudoku: sudoku,
-        cell,
-        changedCells,
-        newSudoku
+        clearedCells: changedCells
     }
 }
