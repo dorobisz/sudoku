@@ -1,6 +1,7 @@
 import React from "react";
 import { populateValue } from "../../redux/reducers/actions";
-import { Cell } from "../model";
+import { setValueFocus, resetValueFocus } from "../../redux/reducers/app/sudokuReducer";
+import { Cell, NavigationType } from "../model";
 import HelpValues from "./HelpValues";
 import InputValue from "./InputValue";
 
@@ -10,13 +11,22 @@ interface SudokuCellProps {
     dispatch: Function};
 
 const SudokuCell:React.FC<SudokuCellProps> = ({cell,dispatch}) => {
-    const {helpValue} = cell;
+    const {helpValue, valueFocus} = cell;
 
     const handleValueChange = (value: number) => dispatch(populateValue({...cell, value}));
 
+    const handleChangFocus = (navigationType: NavigationType) => dispatch(setValueFocus({cell, navigationType}))
+
     return (    
         <td className="SudokuCell">
-            <InputValue helpValue={helpValue} value={cell.value} onChange={ (value: number) => handleValueChange(value)}/>
+            <InputValue 
+                helpValue={helpValue} 
+                value={cell.value} 
+                focus={valueFocus} 
+                onChangeFocus={(navigationType: NavigationType) => dispatch(setValueFocus({cell, navigationType}))} 
+                onChange={(value: number) => dispatch(populateValue({...cell, value}))}
+                onResetFocus= {() => dispatch(resetValueFocus(cell))}
+            />
             <HelpValues helpValues={helpValue} />
         </td>
     );

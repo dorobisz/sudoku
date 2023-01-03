@@ -11,8 +11,12 @@ export interface Cell {
     coordinates: Coordinates,
     value?: number,
     helpValue: Array<number>
-    historyIds: Array<string>
+    historyIds: Array<string>,
+    valueFocus: boolean
 };
+
+export type NavigationType = "ArrowUp" | "ArrowDown" | "ArrowLeft" | "ArrowRight"
+
 
 export interface HistoryArray extends Array<History>{}
 

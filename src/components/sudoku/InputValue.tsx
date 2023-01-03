@@ -1,17 +1,33 @@
-import { isEqual } from "lodash";
-import React, { useState} from "react";
-import { on } from "stream";
-import { Cell } from "../model";
-import HelpValues from "./HelpValues";
+import React, { useState, useRef} from "react";
+import {NavigationType} from "../model"
 
 interface InputValueProps {
     value?: number,
     helpValue: Array<number> 
-    onChange: Function};
+    onChange?: Function,
+    onChangeFocus?: Function,
+    onResetFocus?: Function,
+    focus: boolean
+};
 
-const InputValue:React.FC<InputValueProps> = ({value, helpValue, onChange}) => {
+
+const InputValue:React.FC<InputValueProps> = ({
+        value, 
+        helpValue, 
+        focus, 
+        onChange=(value: number)=>{}, 
+        onChangeFocus=(direction: NavigationType) => {},
+        onResetFocus=() => {}
+    }) => {
 
     const [selectedValue, setSelectedValue] = useState<number>(value || 0);
+    const inputValueRef = useRef<HTMLInputElement>(null);
+
+    React.useEffect(() => {
+        if (inputValueRef.current && focus) {
+            inputValueRef.current.focus();
+        }
+      }, [focus]);
 
     const handleValueChange = (value: string) => {
         const parsed = parseInt(value);
@@ -27,13 +43,25 @@ const InputValue:React.FC<InputValueProps> = ({value, helpValue, onChange}) => {
 
     const hasValue = (): boolean => selectedValue !==0;
 
+    const handleOnKeyDown = (key: string) => {
+        const arrows = ["ArrowUp","ArrowDown", "ArrowLeft" ,"ArrowRight"]
+        if(arrows.includes(key)){
+            onChangeFocus(key)
+        }
+
+    }
+
 
     return (    
-            <input 
+            <input
+            ref={inputValueRef} 
             className="InputValue" 
             value={hasValue() ? selectedValue : ""} 
-            disabled={hasValue()} 
-            onChange={e => handleValueChange(e.target.value)}/>
+            disabled={hasValue()}
+            onKeyDown={e => handleOnKeyDown(e.key)} 
+            onChange={e => handleValueChange(e.target.value)}
+            onBlur={e => onResetFocus()}
+            />
             
     );
 }
