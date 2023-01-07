@@ -37,8 +37,8 @@ export const sudokuSlice = createSlice({
         
     },
 
-    setValueFocus: (state, action: PayloadAction<NavigationPayload>) => {
-      const {cell, navigationType} = action.payload;
+    setNextValueFocus: (state, action: PayloadAction<NavigationPayload>) => {
+        const {cell, navigationType} = action.payload;
       const cellToUpdates: Array<Cell> = updateNavigation(state.sudoku, cell, navigationType);
       state.sudoku = updateSudoku(state.sudoku, cellToUpdates);
     },
@@ -48,13 +48,13 @@ export const sudokuSlice = createSlice({
       state.sudoku = updateSudoku(state.sudoku, [cell]);
     },
 
-    update: (state, action:PayloadAction<Cell>) => {
-      state.sudoku = updateSudoku(state.sudoku, [action.payload]);
+    updateAll: (state, action:PayloadAction<Cell[]>) => {
+      state.sudoku = updateSudoku(state.sudoku, action.payload);
     },
   },
 })
 
-export const { setValue, update, setValueFocus, resetValueFocus } = sudokuSlice.actions
+export const { setValue, updateAll, setNextValueFocus, resetValueFocus } = sudokuSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectSudoku = (state: RootState) => state.app.sudoku as SudokuCellArray

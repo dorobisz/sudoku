@@ -4,7 +4,7 @@ import store from "../sotre";
 import { addValueStrategy } from "../../strategies/addValueStrategy";
 import { removeValueStrategy } from "../../strategies/removeValueStrategy";
 import { addHistory } from "./hisotry/historyReducer";
-import { update, setValue } from "./app/sudokuReducer";
+import { updateAll, setValue } from "./app/sudokuReducer";
 import { uid, updateCells } from "../reducerUtils";
 import { createHistory } from "./hisotry/historyFactory";
 
@@ -25,7 +25,9 @@ const addCellHistory = (cell: Cell, strategyProvider: Function) => (dispatch: an
   const strategy =  strategyProvider(sudoku, cell);
 
   const updatedCells = updateCells(sudoku, strategy.clearedCells, historyId);
-  updatedCells.forEach(cell => dispatch(update(cell)));
-  dispatch(addHistory(createHistory(strategy, store.getState().app.sudoku, historyId)))
+  if(updateCells.length > 0) {
+    dispatch(addHistory(createHistory(strategy, store.getState().app.sudoku, historyId)))
+    dispatch(updateAll(updatedCells));
+  }
      
 }
