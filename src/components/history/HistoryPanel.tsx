@@ -9,7 +9,7 @@ interface SudokuCellProps {
 const HistoryPanel:React.FC<SudokuCellProps> = ({histories,dispatch}) => {
 
     return (    
-        <div>
+        <div className="History_panel">
             <h2>History panel</h2>
             {histories.map(history => <HistoryElement key={`historyElement${history.id}`} history={history}/>)}
         </div>
