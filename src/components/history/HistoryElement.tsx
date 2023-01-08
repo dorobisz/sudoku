@@ -5,16 +5,14 @@ import { classNames } from "../cssJoiner";
 
 interface HistoryElementProps {
     history: History,
+    selected?: boolean
     onClick?: Function
 };
 
-const HistoryElement:React.FC<HistoryElementProps> = ({history, onClick = () => {}}) => {
-    const [selected, setSelected] = useState<boolean>(false)
+const HistoryElement:React.FC<HistoryElementProps> = ({history, selected,  onClick = () => {}}) => {
 
     const handleOnClick = () => {
-        setSelected(!selected)
-
-        onClick({history})
+        onClick();
     }
 
 

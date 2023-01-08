@@ -1,10 +1,12 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import SudokuReducer from "./reducers/app/sudokuReducer";
-import HistoryReducer from "./reducers/hisotry/historyReducer"
+import HistoryReducer from "./reducers/hisotry/historyReducer";
+import AnalyzatorReduce from "./reducers/analyzator/amalyzatorReducer";
 
 const reducers = combineReducers({
     app: SudokuReducer,
-    history: HistoryReducer
+    history: HistoryReducer,
+    analyzator: AnalyzatorReduce
 });
 
 const store = configureStore({
