@@ -4,7 +4,7 @@ import { selectHistory } from './redux/reducers/hisotry/historyReducer';
 import { selectSudoku } from './redux/reducers/app/sudokuReducer';
 import { useAppDispatch, useAppSelector } from './redux/hooks';
 import HistoryPanel from './components/history/HistoryPanel';
-import { selectAnalyzator } from './redux/reducers/analyzator/amalyzatorReducer';
+import { selectAnalyzator } from './redux/reducers/analyzator/analyzatorReducer';
 
 function App() {
   const sudoku = useAppSelector(selectSudoku);
@@ -17,10 +17,10 @@ function App() {
       <div className="contentHeader"><h1>SUDOKU</h1></div>
       <div className="leftPanel"></div>
       <div className="main">
-        <Sudoku sudoku={sudoku} dispatch={dispatch} />
+        <Sudoku sudoku={sudoku} analyzator={analyzator} dispatch={dispatch} />
       </div>
       <div className="rightPanel">
-        <HistoryPanel dispatch={dispatch} analyzator={analyzator} histories={histories} />
+        <HistoryPanel dispatch={dispatch} histories={histories} />
       </div>
     </div>
   );

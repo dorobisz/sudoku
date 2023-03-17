@@ -1,12 +1,24 @@
-import { Cell, SudokuCellArray } from "../../components/model";
-import { getCell } from "../../utils/sudokuUtil";
+import { Cell, History } from "../../components/model";
 import store from "../sotre";
 import { addValueStrategy } from "../../strategies/addValueStrategy";
 import { removeValueStrategy } from "../../strategies/removeValueStrategy";
-import { addHistory } from "./hisotry/historyReducer";
+import { addHistory, updateHistory } from "./hisotry/historyReducer";
 import { updateAll, setValue } from "./app/sudokuReducer";
 import { uid, updateCells } from "../reducerUtils";
 import { createHistory } from "./hisotry/historyFactory";
+
+
+  import { selectHistory, unselectHistory } from "./analyzator/analyzatorReducer";
+
+export const pinnedHistory = (history: History) =>  (dispatch: any) => {
+   dispatch(selectHistory(history));
+   dispatch(updateHistory({...history, isPinned: true}));
+}
+
+export const unpinnedHistory = (history: History) =>  (dispatch: any) => {
+  dispatch(unselectHistory());
+  dispatch(updateHistory({...history, isPinned: false}));
+}
 
 export const populateValue = (cell: Cell) => (dispatch: any) => {
     dispatch(setValue(cell));

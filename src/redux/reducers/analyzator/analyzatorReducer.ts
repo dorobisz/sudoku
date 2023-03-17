@@ -29,11 +29,14 @@ export const analyzatorSlice = createSlice({
     selectHistory: (state, action: PayloadAction<History>) => {
         const historyId = action.payload.id;
         state.selectedHistory = isNewHistory(state, historyId) ?  {id: action.payload.id} : undefined;
+    },
+    unselectHistory:  (state) => {
+      state.selectedHistory = undefined;
     }
   },
 })
 
-export const { selectCell, selectHistory } = analyzatorSlice.actions;
+export const { selectCell, selectHistory, unselectHistory } = analyzatorSlice.actions;
 
 
 

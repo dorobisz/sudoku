@@ -22,11 +22,29 @@ export const sudokuSlice = createSlice({
     addHistory: (state, action: PayloadAction<History>) => {
         const history = action.payload;
         state.values = [...state.values, history];
+    },
+    updateHistory: (state, action: PayloadAction<History>) => {
+      const history = action.payload;
+      state.values = update(state.values, history);
+      
+
+      
     }
   },
 })
 
-export const { addHistory } = sudokuSlice.actions;
+export const { addHistory, updateHistory } = sudokuSlice.actions;
+
+const findHistoryIdx = (histories: HistoryArray, id: String): number => {
+  return histories.findIndex(history=> history.id === id)
+};
+
+const update = (histories: HistoryArray, history: History): HistoryArray => {
+    const idx = findHistoryIdx(histories, history.id);
+    const result = [...histories];
+    result[idx] = history;
+    return result;
+}
 
 
 

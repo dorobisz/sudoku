@@ -7,6 +7,7 @@ export const createHistory = (strategy: Strategy, newSudoku: SudokuCellArray, id
     return {
         id,
         strategy,
-        newSudoku
+        newSudoku,
+        isPinned: false
     }
 }

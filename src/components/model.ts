@@ -12,7 +12,8 @@ export interface Cell {
     value?: number,
     helpValue: Array<number>
     historyIds: Array<string>,
-    valueFocus: boolean
+    valueFocus: boolean,
+    selectedHistory?: History
 };
 
 export type NavigationType = "ArrowUp" | "ArrowDown" | "ArrowLeft" | "ArrowRight"
@@ -23,7 +24,8 @@ export interface HistoryArray extends Array<History>{}
 export interface History {
     id: string,
     strategy: Strategy,
-    newSudoku: SudokuCellArray
+    newSudoku: SudokuCellArray,
+    isPinned: boolean
 }
 
 export type StrategyType =  "major" | "minor";

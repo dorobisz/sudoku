@@ -1,19 +1,16 @@
 import React from "react";
 import { HistoryArray, History } from "../model";
-import {AnalyzatorState, selectHistory} from "../../redux/reducers/analyzator/amalyzatorReducer";
 import HistoryElement from "./HistoryElement";
+import { pinnedHistory, unpinnedHistory } from "../../redux/reducers/actions";
 
 interface SudokuCellProps {
     histories: HistoryArray,
-    analyzator: AnalyzatorState,
     dispatch: Function};
 
-const HistoryPanel:React.FC<SudokuCellProps> = ({histories, analyzator ,dispatch}) => {
+const HistoryPanel:React.FC<SudokuCellProps> = ({histories, dispatch}) => {
 
-    const selected = (history: History): boolean => {
-        const id  = analyzator.selectedHistory?.id;
-        const result = history.id === id;
-        return result;
+    const clickHandle = (history: History) => {
+        dispatch(!history.isPinned ? pinnedHistory(history) : unpinnedHistory(history));
     }
 
 
@@ -23,9 +20,9 @@ const HistoryPanel:React.FC<SudokuCellProps> = ({histories, analyzator ,dispatch
             <h2>History panel</h2>
             {histories.map(history => <HistoryElement 
                 key={`historyElement${history.id}`} 
-                selected={selected(history)}
+                selected={history.isPinned}
                 history={history} 
-                onClick={()=> dispatch(selectHistory(history))}
+                onClick={()=> clickHandle(history)}
             />)}
         </div>
     );
