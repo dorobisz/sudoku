@@ -17,7 +17,7 @@ function App() {
       <div className="contentHeader"><h1>SUDOKU</h1></div>
       <div className="leftPanel"></div>
       <div className="main">
-        <Sudoku sudoku={sudoku} analyzator={analyzator} dispatch={dispatch} />
+        <Sudoku sudoku={sudoku} dispatch={dispatch} />
       </div>
       <div className="rightPanel">
         <HistoryPanel dispatch={dispatch} histories={histories} />

@@ -6,7 +6,6 @@ import { AnalyzatorState } from "../../redux/reducers/analyzator/analyzatorReduc
 
 interface SudokuProps {
     sudoku: SudokuCellArray,
-    analyzator: AnalyzatorState,
     dispatch: Function,
 }
 

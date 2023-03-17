@@ -23,17 +23,18 @@ export const sudokuSlice = createSlice({
         const history = action.payload;
         state.values = [...state.values, history];
     },
-    updateHistory: (state, action: PayloadAction<History>) => {
+    unpinedAllHistories: (state) => {
+      state.values = clearAllPinnedHistories(state.values);
+    },
+    newPinedHistory: (state, action: PayloadAction<History>) => {
       const history = action.payload;
-      state.values = update(state.values, history);
-      
-
-      
-    }
+      state.values = update(clearAllPinnedHistories(state.values), ({...history,isPinned: true}));
+    },
   },
+  
 })
 
-export const { addHistory, updateHistory } = sudokuSlice.actions;
+export const { addHistory, unpinedAllHistories, newPinedHistory } = sudokuSlice.actions;
 
 const findHistoryIdx = (histories: HistoryArray, id: String): number => {
   return histories.findIndex(history=> history.id === id)
@@ -52,3 +53,6 @@ const update = (histories: HistoryArray, history: History): HistoryArray => {
 export const selectHistory = (state: RootState) => state.history.values as HistoryArray
 
 export default sudokuSlice.reducer
+
+const clearAllPinnedHistories = (histories: HistoryArray): HistoryArray => 
+  histories.map(history=> ({...history, isPinned: false}))
