@@ -51,7 +51,6 @@ const InputValue:React.FC<InputValueProps> = ({
 
     }
 
-    hasValue() && console.log("input renderer");
     return (    
             <input
             ref={inputValueRef} 

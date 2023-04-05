@@ -20,9 +20,7 @@ const SudokuCell:React.FC<SudokuCellProps> = ({cell,dispatch}) => {
 
     const getRemovedValues = () => {
         const {rowNr, columnNr} = coordinates;
-        const clearedValue = selectedHistory?.strategy.clearedCells?.find(clearedCell => clearedCell.coordinates.columnNr === columnNr && clearedCell.coordinates.rowNr === rowNr)?.removedHelpValues || []
-        console.log(clearedValue);
-        return clearedValue
+        return selectedHistory?.strategy.clearedCells?.find(clearedCell => clearedCell.coordinates.columnNr === columnNr && clearedCell.coordinates.rowNr === rowNr)?.removedHelpValues || []
     }
 
     return (    

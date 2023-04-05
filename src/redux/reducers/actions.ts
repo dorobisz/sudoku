@@ -40,7 +40,7 @@ const addCellHistory = (cell: Cell, strategyProvider: Function) => (dispatch: an
   const strategy =  strategyProvider(sudoku, cell);
 
   const updatedCells = updateCells(sudoku, strategy.clearedCells, historyId);
-  if(updateCells.length > 0) {
+  if(updatedCells.length > 0) {
     dispatch(addHistory(createHistory(strategy, store.getState().app.sudoku, historyId)))
     dispatch(updateAll(updatedCells));
   }
