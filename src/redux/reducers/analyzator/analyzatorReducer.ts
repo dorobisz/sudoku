@@ -6,7 +6,8 @@ import type { RootState } from '../../sotre'
 // Define a type for the slice state
 export interface AnalyzatorState {
     selectedHistory?: {id: String},
-    selectedCell?: Cell
+    selectedCell?: Cell,
+    updatedCells: Array<Cell>
 }
 
 const isNewHistory = (state: AnalyzatorState, id: string): boolean => state.selectedHistory?.id !== id;
@@ -15,7 +16,8 @@ const isNewHistory = (state: AnalyzatorState, id: string): boolean => state.sele
 // Define the initial state using that type
 const initialState: AnalyzatorState = {
   selectedHistory: undefined,
-  selectedCell: undefined
+  selectedCell: undefined,
+  updatedCells: []
 }
 
 export const analyzatorSlice = createSlice({
@@ -32,11 +34,18 @@ export const analyzatorSlice = createSlice({
     },
     unselectHistory:  (state) => {
       state.selectedHistory = undefined;
+    },
+    setUpdatedCells: (state, action: PayloadAction<Array<Cell>>) => {
+      state.updatedCells = [...state.updatedCells, ...action.payload]
+    },
+
+    resetUpdatedCells: (state) => {
+      state.updatedCells = []
     }
   },
 })
 
-export const { selectCell, selectHistory, unselectHistory } = analyzatorSlice.actions;
+export const { selectCell, selectHistory, unselectHistory, setUpdatedCells, resetUpdatedCells } = analyzatorSlice.actions;
 
 
 

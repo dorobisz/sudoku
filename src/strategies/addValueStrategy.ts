@@ -1,6 +1,6 @@
 import { Cell, SudokuCellArray, Strategy } from "../components/model"
 
-export const addValueStrategy = (sudoku: SudokuCellArray, cell: Cell): Strategy => {
+export default  (sudoku: SudokuCellArray, cell: Cell): Strategy => {
 
     return {
         strategyType: "major",

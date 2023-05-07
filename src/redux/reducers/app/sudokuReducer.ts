@@ -29,6 +29,7 @@ export const sudokuSlice = createSlice({
     setValue: (state, action: PayloadAction<Cell>) => {
         const currentCell: Cell = {
           ...action.payload, 
+          helpValue: [],
           valueFocus: false
         };
         let nextCell = getNextFocusCell(state.sudoku, currentCell);

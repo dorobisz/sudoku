@@ -3,8 +3,11 @@ import { getBlock, getColumn, getRow } from "../utils/sudokuUtil"
 import { createStrategyApi, StrategyApi, StrategyFunction } from "./StrategyApi"
 
 const removeHelpValue = (cells: SudokuCellArray, value?: number): Array<StrategyCell> => {
+    if (value == undefined) {
+     return []
+    }
     return cells
-    .filter(cell => cell.value === undefined)
+    .filter(cell => cell.helpValue.includes(value))
     .map(cell => (
             {
                 coordinates: cell.coordinates, 
@@ -16,7 +19,7 @@ const removeHelpValue = (cells: SudokuCellArray, value?: number): Array<Strategy
 
 
 
-export const removeValueStrategy = (sudoku: SudokuCellArray, cell: Cell): Strategy => {
+export default (sudoku: SudokuCellArray, cell: Cell): Strategy => {
 
     const removeStrategy: StrategyFunction = (cells: SudokuCellArray) => {
         return removeHelpValue(cells, cell.value);
