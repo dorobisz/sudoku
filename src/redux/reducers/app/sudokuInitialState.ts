@@ -7,12 +7,11 @@ const calculateIndex = function (row: number, column: number): number {
     return rowIdx * 9 + colIdx;
   }; 
 
-const calculateBlockNr = (row: number, column: number): number => {
-    const divRow = Math.ceil(~~row / 3);
-    const divCol = Math.ceil(~~column / 3);
-  return parseInt(`${divRow}${divCol}`);
-}
-
+  export const calculateBlockNr = (row: number, column: number): number => {
+    const majorRow = Math.floor((row -1)/ 3);
+    const  majorCol = Math.floor((column -1)/ 3);
+    return (majorRow % 3)*3 + majorCol + 1;
+  }
 
 const sudokuInitialState = (): SudokuCellArray => {
     const initState: SudokuCellArray = [];
