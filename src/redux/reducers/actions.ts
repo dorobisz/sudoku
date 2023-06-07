@@ -1,7 +1,7 @@
 import { Cell, Coordinates, History } from "../../components/model";
 import { isEqual } from "lodash";
 import store from "../sotre";
-import { addValueStrategy, onlyOneValueStrategy, removeValueStrategy } from "../../strategies";
+import { addValueStrategy, onlyOneValueStrategy, removeValueStrategy, explicitePairsStrategy } from "../../strategies";
 import { addHistory, newPinedHistory, unpinedAllHistories } from "./hisotry/historyReducer";
 import { updateAll, setValue, addSelectedHistory, removeSelectedHistory } from "./app/sudokuReducer";
 import { uid, updateCells } from "../reducerUtils";
@@ -33,6 +33,7 @@ export const populateValue = (cell: Cell) => (dispatch: any) => {
 const history = (coordinates: Coordinates) => (dispatch: any) => {
   dispatch(addCellHistory(coordinates, removeValueStrategy));
   dispatch(addCellHistory(coordinates, onlyOneValueStrategy));
+  dispatch(addCellHistory(coordinates, explicitePairsStrategy));
   dispatch(checkUpdatedCells())
 }
 

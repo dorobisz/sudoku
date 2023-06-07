@@ -98,7 +98,6 @@ test('renders learn react link', () => {
 
     expectedCoordinates.forEach(coordinates => {
         const result = calculateBlockNr(coordinates.rowNr, coordinates.columnNr);
-        console.log(coordinates, result, coordinates.blockNr === result)
         expect(result).toEqual(coordinates.blockNr)
     }
         )
