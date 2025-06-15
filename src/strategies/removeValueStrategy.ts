@@ -1,7 +1,6 @@
 import { Cell, SudokuCellArray, StrategyCell, Strategy } from "../components/model"
-import { getBlock, getColumn, getRow } from "../utils/sudokuUtil"
 import { createStrategyApi, StrategyApi, StrategyFunction } from "./StrategyApi"
-
+const removeValueStrategy = (sudoku: SudokuCellArray, cell: Cell): Strategy => {
 const removeHelpValue = (cells: SudokuCellArray, value?: number): Array<StrategyCell> => {
     if (value == undefined) {
      return []
@@ -19,7 +18,7 @@ const removeHelpValue = (cells: SudokuCellArray, value?: number): Array<Strategy
 
 
 
-export default (sudoku: SudokuCellArray, cell: Cell): Strategy => {
+
 
     const removeStrategy: StrategyFunction = (cells: SudokuCellArray) => {
         return removeHelpValue(cells, cell.value);
@@ -35,3 +34,4 @@ export default (sudoku: SudokuCellArray, cell: Cell): Strategy => {
         clearedCells: changedCells
     }
 }
+export default removeValueStrategy;

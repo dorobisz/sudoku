@@ -16,7 +16,7 @@ const onePosibility = (cells: SudokuCellArray, value?: number): Array<StrategyCe
         )
     )
     .flat()
-    .filter(cell=> cell.helpValue.length != 0)
+    .filter(cell=> cell.helpValue.length !== 0)
    
     return oneHelpValues.map(cell => ({coordinates: cell.coordinates, removedHelpValues: cell.helpValue}));
 }

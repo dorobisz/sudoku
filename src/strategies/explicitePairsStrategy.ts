@@ -1,5 +1,4 @@
 import { Cell, SudokuCellArray, Strategy, StrategyCell } from "../components/model"
-import HelpValues from "../components/sudoku/HelpValues";
 import { StrategyApi, StrategyFunction, createStrategyApi } from "./StrategyApi";
 import {isEqual} from 'lodash'
 
@@ -7,7 +6,7 @@ export const detectPairs = (cells: SudokuCellArray, value?: number): Array<Strat
     
     const cellsWithPair = cells.filter(cell => cell.helpValue.length == 2)
     if(cellsWithPair.length > 1) {
-        const pairs = cellsWithPair.map(cell=> cell.helpValue);
+        const pairs = cellsWithPair.map(cell => cell.helpValue);
 
         const pairMap = new Map();
         pairs.forEach(pair => {
@@ -19,7 +18,7 @@ export const detectPairs = (cells: SudokuCellArray, value?: number): Array<Strat
             })
         });
 
-        const pairCells = [...new Set(Array.from(pairMap.values()).filter(cells => cells.length == 2).flat())];
+        const pairCells = [...new Set(Array.from(pairMap.values()).filter(cells => cells.length === 2).flat())];
         const pair = [...new Set(pairCells.map(cell => cell.helpValue).flat())];
 
         return cells
@@ -34,7 +33,7 @@ export const detectPairs = (cells: SudokuCellArray, value?: number): Array<Strat
     return [];
 }
 
-export default  (sudoku: SudokuCellArray, cell: Cell): Strategy => {
+const explicitePairsStrategy = (sudoku: SudokuCellArray, cell: Cell): Strategy => {
 
     const pairsStrategy: StrategyFunction = (cells: SudokuCellArray) => {
         return detectPairs(cells, cell.value);
@@ -51,3 +50,5 @@ export default  (sudoku: SudokuCellArray, cell: Cell): Strategy => {
         clearedCells: changedCells
     }
 }
+
+export default explicitePairsStrategy;
