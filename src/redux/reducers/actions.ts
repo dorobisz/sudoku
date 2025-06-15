@@ -3,7 +3,7 @@ import { isEqual } from "lodash";
 import store from "../sotre";
 import { addValueStrategy, onlyOneValueStrategy, removeValueStrategy, explicitePairsStrategy } from "../../strategies";
 import { addHistory, newPinedHistory, unpinedAllHistories } from "./hisotry/historyReducer";
-import { updateAll, setValue, addSelectedHistory, removeSelectedHistory } from "./app/sudokuReducer";
+import { updateAll, setValue, addSelectedHistory, removeSelectedHistory, generateSudoku, clearSudoku } from "./app/sudokuReducer";
 import { uid, updateCells } from "../reducerUtils";
 import { createHistory } from "./hisotry/historyFactory";
 
