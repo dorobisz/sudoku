@@ -1,5 +1,5 @@
 
-export interface SudokuCellArray extends Array<Cell>{}
+export interface Sudoku extends Array<Cell>{}
 
 export interface Coordinates {
     blockNr: number,
@@ -24,7 +24,7 @@ export interface HistoryArray extends Array<History>{}
 export interface History {
     id: string,
     strategy: Strategy,
-    newSudoku: SudokuCellArray,
+    newSudoku: Sudoku,
     isPinned: boolean
 }
 

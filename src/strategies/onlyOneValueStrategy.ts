@@ -1,7 +1,7 @@
-import { Cell, SudokuCellArray, Strategy, StrategyCell } from "../components/model"
+import { Cell, Sudoku, Strategy, StrategyCell } from "../components/model"
 import { StrategyApi, StrategyFunction, createStrategyApi } from "./StrategyApi"
-
-const onePosibility = (cells: SudokuCellArray, value?: number): Array<StrategyCell> => {
+ 
+const onePosibility = (cells: Sudoku, value?: number): Array<StrategyCell> => {
     const oneHelpValues = [1,2,3,4,5,6,7,8,9]
     .map((value) => cells.filter(cell => cell.helpValue.includes(value)).length)
     .map((value, index) => value === 1 ? index+1 : 0)
@@ -21,9 +21,9 @@ const onePosibility = (cells: SudokuCellArray, value?: number): Array<StrategyCe
     return oneHelpValues.map(cell => ({coordinates: cell.coordinates, removedHelpValues: cell.helpValue}));
 }
 
-export default(sudoku: SudokuCellArray, cell: Cell): Strategy => {
+export default(sudoku: Sudoku, cell: Cell): Strategy => {
 
-    const onePosibilityStrategy: StrategyFunction = (cells: SudokuCellArray) => {
+    const onePosibilityStrategy: StrategyFunction = (cells: Sudoku) => {
         return onePosibility(cells, cell.value);
     }
 

@@ -1,12 +1,12 @@
 import React from "react";
-import { SudokuCellArray} from "../model";
+import { Sudoku} from "../model";
 import SudokuBlock from "./SudokuBlock";
 import { getBlock } from "../../utils/sudokuUtil";
 import { AnalyzatorState } from "../../redux/reducers/analyzator/analyzatorReducer";
 
 interface SudokuProps {
-    sudoku: SudokuCellArray,
-    dispatch: Function,
+ sudoku: Sudoku,
+ dispatch: Function,
 }
 
 const Sudoku: React.FC<SudokuProps> = ({sudoku, dispatch}) => {

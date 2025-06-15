@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { Cell, History, HistoryArray, SudokuCellArray } from '../../../components/model'
+import { Cell, History, HistoryArray, Sudoku } from '../../../components/model'
 import type { RootState } from '../../sotre'
 
 
