@@ -1,4 +1,4 @@
-import { SudokuCellArray } from "../../../components/model";
+import { Sudoku } from "../../../components/model";
 
 
 const calculateIndex = function (row: number, column: number): number {
@@ -13,8 +13,8 @@ const calculateIndex = function (row: number, column: number): number {
     return (majorRow % 3)*3 + majorCol + 1;
   }
 
-const sudokuInitialState = (): SudokuCellArray => {
-    const initState: SudokuCellArray = [];
+const sudokuInitialState = (): Sudoku => {
+    const initState: Sudoku = [];
 
     for(let row = 1; row < 10; row++ ) {
         for(let column = 1; column < 10; column++){

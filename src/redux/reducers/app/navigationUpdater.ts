@@ -1,7 +1,7 @@
-import { Cell, Coordinates, NavigationType, SudokuCellArray } from "../../../components/model";
+import { Cell, Coordinates, NavigationType, Sudoku } from "../../../components/model";
 import { getColumn, getRow } from "../../../utils/sudokuUtil";
 
-const getCellsArray = (sudoku: SudokuCellArray, coordinates: Coordinates, navigationType: NavigationType): Array<Cell> => {
+const getCellsArray = (sudoku: Sudoku, coordinates: Coordinates, navigationType: NavigationType): Array<Cell> => {
     switch(navigationType) {
         case "ArrowDown":
             return getColumn(coordinates.columnNr, sudoku);
@@ -33,7 +33,7 @@ const findNextCellIndex = (cellsArray: Array<Cell>, initIndex: number, currentIn
     return !cell.value ? result : findNextCellIndex(cellsArray, initIndex, result);
 }
 
-export const updateNavigation = (sudoku: SudokuCellArray, cell: Cell, navigationType: NavigationType): Array<Cell> => {
+export const updateNavigation = (sudoku: Sudoku, cell: Cell, navigationType: NavigationType): Array<Cell> => {
     const cellsArray = getCellsArray(sudoku, cell.coordinates, navigationType);
     const initIndex = getInitIndex(cell.coordinates, navigationType);
     cellsArray[initIndex] = {...cellsArray[initIndex], valueFocus: false};

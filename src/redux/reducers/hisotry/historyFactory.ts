@@ -1,9 +1,7 @@
-import { Strategy, SudokuCellArray, History } from "../../../components/model";
+import { Strategy, Sudoku, History } from "../../../components/model";
 
 
-
-
-export const createHistory = (strategy: Strategy, newSudoku: SudokuCellArray, id: string): History => {
+export const createHistory = (strategy: Strategy, newSudoku: Sudoku, id: string): History => {
     return {
         id,
         strategy,

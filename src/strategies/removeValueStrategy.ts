@@ -1,7 +1,7 @@
-import { Cell, SudokuCellArray, StrategyCell, Strategy } from "../components/model"
+import { Cell, Sudoku, StrategyCell, Strategy } from "../components/model"
 import { createStrategyApi, StrategyApi, StrategyFunction } from "./StrategyApi"
-const removeValueStrategy = (sudoku: SudokuCellArray, cell: Cell): Strategy => {
-const removeHelpValue = (cells: SudokuCellArray, value?: number): Array<StrategyCell> => {
+const removeValueStrategy = (sudoku: Sudoku, cell: Cell): Strategy => {
+const removeHelpValue = (cells: Sudoku, value?: number): Array<StrategyCell> => {
     if (value == undefined) {
      return []
     }
@@ -20,7 +20,7 @@ const removeHelpValue = (cells: SudokuCellArray, value?: number): Array<Strategy
 
 
 
-    const removeStrategy: StrategyFunction = (cells: SudokuCellArray) => {
+    const removeStrategy: StrategyFunction = (cells: Sudoku) => {
         return removeHelpValue(cells, cell.value);
     }
 

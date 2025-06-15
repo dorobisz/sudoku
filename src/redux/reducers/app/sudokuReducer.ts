@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { clearLine } from 'readline'
+
 import { Cell, NavigationType, SudokuCellArray, History } from '../../../components/model'
 import type { RootState } from '../../sotre'
 import { updateNavigation } from './navigationUpdater'
@@ -7,7 +7,7 @@ import sudokuInitialState from './sudokuInitialState'
 
 // Define a type for the slice state
 export interface SudokuState {
-    sudoku: SudokuCellArray
+    sudoku: Sudoku
 }
 
 
@@ -68,7 +68,7 @@ export const sudokuSlice = createSlice({
 export const { setValue, updateAll, setNextValueFocus, resetValueFocus, addSelectedHistory, removeSelectedHistory } = sudokuSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
-export const selectSudoku = (state: RootState) => state.app.sudoku as SudokuCellArray
+export const selectSudoku = (state: RootState) => state.app.sudoku as Sudoku
 
 export default sudokuSlice.reducer;
 
@@ -84,15 +84,14 @@ const getNextFocusCell = (sudoku: SudokuCellArray, cell: Cell, currentIndex?: nu
     return nextCell.value ? getNextFocusCell(sudoku, cell, sudokuIndex) : {...nextCell, valueFocus: true};
 }
 
-const updateSudoku = (sudoku: SudokuCellArray, cells: Array<Cell>): SudokuCellArray => {
+const updateSudoku = (sudoku: Sudoku, cells: Array<Cell>): Sudoku => {
   const newSudoku = [...sudoku]
   cells.forEach(cell => {
       newSudoku[getSudokuArrayIndex(cell)] = cell
   });
   return newSudoku;
 };
-
-const findCellsWithHistoryId = (sudoku: SudokuCellArray, history: History): Array<Cell> => {
+const findCellsWithHistoryId = (sudoku: Sudoku, history: History): Array<Cell> => {
     return sudoku.filter(cell => cell.historyIds.includes(history.id))
 }
 
