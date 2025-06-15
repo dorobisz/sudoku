@@ -9,7 +9,7 @@ interface SudokuProps {
     dispatch: Function,
 }
 
-const Sudoku: React.FC<SudokuProps> = ({sudoku, dispatch}) => {
+const SudokuBoard: React.FC<SudokuProps> = ({sudoku, dispatch}) => {
     const blockNrs = sudoku.map(cell => cell.coordinates.blockNr);
     const blocksNr = [...new Set(blockNrs)] ;
     blocksNr.sort();
@@ -22,4 +22,4 @@ const Sudoku: React.FC<SudokuProps> = ({sudoku, dispatch}) => {
     );
 }
 
-export default Sudoku;
+export default SudokuBoard;

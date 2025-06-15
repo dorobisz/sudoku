@@ -1,5 +1,5 @@
 import './App.css';
-import Sudoku from './components/sudoku/Sudoku';
+import SudokuBoard from './components/sudoku/SudokuBoard';
 import { selectHistory } from './redux/reducers/hisotry/historyReducer';
 import { selectSudoku } from './redux/reducers/app/sudokuReducer';
 import { useAppDispatch, useAppSelector } from './redux/hooks';
@@ -17,7 +17,7 @@ function App() {
       <div className="contentHeader"><h1>SUDOKU</h1></div>
       <div className="leftPanel"></div>
       <div className="main">
-        <Sudoku sudoku={sudoku} dispatch={dispatch} />
+        <SudokuBoard sudoku={sudoku} dispatch={dispatch} />
       </div>
       <div className="rightPanel">
         <HistoryPanel dispatch={dispatch} histories={histories} />
