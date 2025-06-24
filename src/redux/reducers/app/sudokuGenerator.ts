@@ -1,4 +1,4 @@
-import { Sudoku, Cell } from '../components/model';
+import { Sudoku, Cell } from '../../../components/model';
 
 
 export function removeCells(sudoku: Sudoku, cellsToRemove: number): Sudoku {
@@ -42,8 +42,10 @@ export function hasUniqueSolution(sudoku: Sudoku): boolean {
 export function generateFullSudoku(sudoku: Sudoku): Sudoku | null {
   const newSudoku = [...sudoku];
   const emptyCell = findEmptyCell(newSudoku);
+  console.log("emptyCell", emptyCell)
 
   if (!emptyCell) {
+    console.log("sudoku is full")
     return newSudoku; // Sudoku is full
   }
 
@@ -52,14 +54,15 @@ export function generateFullSudoku(sudoku: Sudoku): Sudoku | null {
       const cellIndex = getSudokuArrayIndex(emptyCell);
       newSudoku[cellIndex] = { ...newSudoku[cellIndex], value: num };
 
-      if (generateFullSudoku(newSudoku) !== null) {
+      // if (generateFullSudoku(newSudoku) !== null) {
         return newSudoku;
-      }
+      // }
 
-      newSudoku[cellIndex] = { ...newSudoku[cellIndex], value: undefined }; // Backtrack
+      // newSudoku[cellIndex] = { ...newSudoku[cellIndex], value: undefined }; // Backtrack
     }
   }
 
+  console.log("no solution found")
   return null; // No solution found
 }
 

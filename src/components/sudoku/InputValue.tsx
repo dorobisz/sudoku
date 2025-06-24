@@ -1,4 +1,4 @@
-import React, { useState, useRef} from "react";
+import React, { useEffect, useState, useRef} from "react";
 import {NavigationType} from "../model"
 
 interface InputValueProps {
@@ -23,11 +23,16 @@ const InputValue:React.FC<InputValueProps> = ({
     const [selectedValue, setSelectedValue] = useState<number>(value || 0);
     const inputValueRef = useRef<HTMLInputElement>(null);
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (inputValueRef.current && focus) {
             inputValueRef.current.focus();
         }
       }, [focus]);
+
+    useEffect(() => {
+
+        setSelectedValue(value || 0)
+      }, [value]);
 
     const handleValueChange = (value: string) => {
         const parsed = parseInt(value);

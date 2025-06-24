@@ -1,7 +1,7 @@
-import { Cell, Coordinates, StrategyCell, SudokuCellArray } from "../components/model";
+import { Cell, Coordinates, StrategyCell, Sudoku } from "../components/model";
 import { clearValues, getBlock, getColumn, getRow } from "../utils/sudokuUtil";
 
-export type StrategyFunction = (cells: SudokuCellArray) => Array<StrategyCell>
+export type StrategyFunction = (cells: Sudoku) => Array<StrategyCell>
 
 interface StrategyState {
 selectedCell: Cell,
@@ -78,7 +78,7 @@ const runStrategy = (state: StrategyState): Array<StrategyCell> => {
     return state.changedCells;
 }
 
-export const createStrategyApi = (sudoku: SudokuCellArray, cell: Cell): StrategyApi => {
+export const createStrategyApi = (sudoku: Sudoku, cell: Cell): StrategyApi => {
 
     const state: StrategyState = {
         selectedCell: {...cell},

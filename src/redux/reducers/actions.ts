@@ -3,7 +3,7 @@ import { isEqual } from "lodash";
 import store from "../sotre";
 import { addValueStrategy, onlyOneValueStrategy, removeValueStrategy, explicitePairsStrategy } from "../../strategies";
 import { addHistory, newPinedHistory, unpinedAllHistories } from "./hisotry/historyReducer";
-import { updateAll, setValue, addSelectedHistory, removeSelectedHistory, generateSudoku, clearSudoku } from "./app/sudokuReducer";
+import { updateAll, setValue, addSelectedHistory, removeSelectedHistory, generateSudoku, clearSudoku, DifficultyLevel } from "./app/sudokuReducer";
 import { uid, updateCells } from "../reducerUtils";
 import { createHistory } from "./hisotry/historyFactory";
 
@@ -25,9 +25,15 @@ export const unpinnedHistory = (history: History) =>  (dispatch: any) => {
 }
 
 export const populateValue = (cell: Cell) => (dispatch: any) => {
+  console.log("populate value:", cell.value)
     dispatch(setValue(cell));
     dispatch((addCellHistory(cell.coordinates, addValueStrategy)));
     dispatch(history(cell.coordinates));
+}
+
+export const generate = (difficultyLevel: DifficultyLevel) => (dispatch: any) => {
+    console.log("Generate sudoku dificulty:", difficultyLevel)
+    dispatch(generateSudoku(difficultyLevel))
 }
 
 const history = (coordinates: Coordinates) => (dispatch: any) => {

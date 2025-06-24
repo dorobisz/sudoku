@@ -4,7 +4,7 @@ import { Cell, NavigationType, Sudoku, History } from '../../../components/model
 import type { RootState } from '../../sotre'
 import { updateNavigation } from './navigationUpdater'
 import sudokuInitialState from './sudokuInitialState'
-import { generateFullSudoku, removeCells } from '../../../utils/sudokuGenerator'
+import { generateFullSudoku, removeCells } from './sudokuGenerator'
 
 // Define a type for the slice state
 export interface SudokuState {
